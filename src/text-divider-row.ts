@@ -59,17 +59,19 @@ class TextDividerRow extends LitElement {
 
       .text-divider {
         width: 100%;
+        margin: 10px 0 20px;
         border-bottom: var(--line-size) solid var(--divider-color);
       }
 
       .text-divider-inline {
+      }
+
+      .text-divider-inline {
         line-height: 0;
-        margin: 10px 0 20px;
       }
 
       .text-divider-above {
-        line-height: 45px;
-        margin: -30px 0 -12px;
+        line-height: calc(var(--text-divider-font-size, 14px) + 15px);
       }
 
       .text-divider-container {
@@ -89,19 +91,18 @@ class TextDividerRow extends LitElement {
       }
 
       .text-divider span {
+        font-size: var(--font-size);
         color: var(--divider-color);
         padding: 1px 1em;
       }
 
       .text-divider-inline span {
-        font-size: var(--font-size);
         background: var(--background);
       }
 
       .text-divider-above span {
-        font-size: 30px;
         background: transparent;
-        vertical-align: text-top
+        vertical-align: text-top;
       }
 
       .text-divider-center span {
