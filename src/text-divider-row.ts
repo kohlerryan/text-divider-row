@@ -22,13 +22,14 @@ class TextDividerRow extends LitElement {
   }
 
   protected getClass(): string {
-    const allowedValues = ['center', 'left', 'right'];
-    if (this._config && this._config.align) {
-      if (allowedValues.includes(this._config.align)) {
-        return `text-divider text-divider-${this._config.align}`;
+    const allowedAlignValues = ['center', 'left', 'right'];
+    const allowedPositionValues = ['inline', 'above'];
+    if (this._config && this._config.align && this._config.position) {
+      if (allowedAlignValues.includes(this._config.align) && allowedPositionValues.includes(this._config.position)) {
+        return `text-divider text-divider-${this._config.align} text-divider-${this._config.position}`;
       }
     }
-    return 'text-divider text-divider-center';
+    return 'text-divider text-divider-center text-divider-inline';
   }
 
   protected render(): TemplateResult | void {
@@ -59,8 +60,16 @@ class TextDividerRow extends LitElement {
       .text-divider {
         width: 100%;
         border-bottom: var(--line-size) solid var(--divider-color);
+      }
+
+      .text-divider-inline {
         line-height: 0;
         margin: 10px 0 20px;
+      }
+
+      .text-divider-above {
+        line-height: 45px;
+        margin: -30px 0 -12px;
       }
 
       .text-divider-container {
@@ -81,10 +90,20 @@ class TextDividerRow extends LitElement {
 
       .text-divider span {
         color: var(--divider-color);
-        font-size: var(--font-size);
-        background: var(--background);
         padding: 1px 1em;
       }
+
+      .text-divider-inline span {
+        font-size: var(--font-size);
+        background: var(--background);
+      }
+
+      .text-divider-above span {
+        font-size: 30px;
+        background: transparent;
+        vertical-align: text-top
+      }
+
       .text-divider-center span {
         margin: 0px;
       }
