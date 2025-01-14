@@ -8,7 +8,7 @@
             "script": "start",
             "problemMatcher": [],
             "label": "npm: start",
-            "detail": "rollup -c rollup.config.dev.js --watch"
+            "detail": "rollup -c rollup.config.dev.mjs --watch"
         }
     ]
 }
