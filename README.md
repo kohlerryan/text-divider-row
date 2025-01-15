@@ -33,14 +33,19 @@ resources:
 
 ![example](example.png)
 ![example2](example2.png)
+![example3](example3.png)
+![example4](example4.png)
 
 ## Options
 
 | Name | Type   | Requirement  | Description                |
 | ---- | ------ | ------------ | -------------------------- |
 | type | string | **Required** | `custom:text-divider-row`  |
-| text | string | **Required** | Text to display in divider |
-| align | string | Optional | Specifies the text alignment. Must be: 'left', 'center' or 'right' |
+| text | string | **Required** | Text to display in divider. |
+| fontsize | string | Optional | Specifies the font size and unit, for example '24px'.  If it is not set, it will look to the theme variable or a default of '14px' (see below). |
+| align | string | Optional | Specifies the text alignment. Must be: 'left', 'center' or 'right'. |
+| position | string | Optional | Specifies the text vertical position of the text relative to the line.  It defaults as 'inline'. Must be: 'inline' or 'above'. |
+| margin | string | Optional | Specifies the left and right margin.  It defaults as '1em 0' text vertical position of the text relative to the line.  It defaults as 'inline'. Must be: 'inline' or 'above'. |
 
 ## Theme Variables
 

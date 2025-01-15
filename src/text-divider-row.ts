@@ -32,16 +32,32 @@ class TextDividerRow extends LitElement {
     return 'text-divider text-divider-center text-divider-inline';
   }
 
+  protected getFontSize(): string {
+    if (this._config && this._config.fontsize) {
+      return `${this._config.fontsize}`;
+    }
+    return 'var(--text-divider-font-size, 14px)';
+  }
+
+  protected getMargin(): string {
+    if (this._config && this._config.fontsize) {
+      return `${this._config.margin}`;
+    }
+    return 'var(--text-divider-margin, 1em 0)';
+  }
+
   protected render(): TemplateResult | void {
     if (!this._config) {
       return html``;
     }
 
     return html`
-      <div class="text-divider-container">
-        <h2 class="${this.getClass()}">
-          <span>${this._config.text}</span>
-        </h2>
+      <div class="text-divider-container" style="margin: ${this.getMargin()}">
+        <div class="text-divider-line"></div>
+        <div class="${this.getClass()}">
+          <span style="font-size: ${this.getFontSize()}">${this._config.text}</span>
+        </div>
+        <div class="text-divider-line"></div>
       </div>
     `;
   }
@@ -49,21 +65,20 @@ class TextDividerRow extends LitElement {
   static get styles(): CSSResult {
     return css`
       :host {
-        display: block;
-        position: relative;
-        --background: var(--ha-card-background, var(--card-background-color));
+        --background: transparent;
         --divider-color: var(--text-divider-color, var(--secondary-text-color));
-        --font-size: var(--text-divider-font-size, 14px);
-        --line-size: var(--text-divider-line-size, 1px);
+        --line-size: var(--text-divider-line-size, 1);
       }
 
       .text-divider {
-        width: 100%;
         margin: 10px 0 20px;
-        border-bottom: var(--line-size) solid var(--divider-color);
+        flex: auto;
       }
 
-      .text-divider-inline {
+      .text-divider-line {
+        margin: 10px 0 20px;
+        border-bottom: 2px solid var(--divider-color);
+        flex: 33%;
       }
 
       .text-divider-inline {
@@ -71,42 +86,39 @@ class TextDividerRow extends LitElement {
       }
 
       .text-divider-above {
-        line-height: calc(var(--text-divider-font-size, 14px) + 15px);
+        line-height: 1.5;
+        border-bottom: 2px solid var(--divider-color);
       }
 
       .text-divider-container {
-        margin: var(--text-divider-margin, 1em 0);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .text-divider-center {
         text-align: center;
+        order: 0;
       }
 
       .text-divider-left {
         text-align: left;
+        order: -1;
       }
 
       .text-divider-right {
         text-align: right;
+        order: 2;
       }
 
       .text-divider span {
         font-size: var(--font-size);
         color: var(--divider-color);
-        padding: 1px 1em;
-      }
-
-      .text-divider-inline span {
-        background: var(--background);
-      }
-
-      .text-divider-above span {
-        background: transparent;
-        vertical-align: text-top;
+        padding: 1px;
       }
 
       .text-divider-center span {
-        margin: 0px;
+        margin: 0;
       }
 
       .text-divider-left span {
